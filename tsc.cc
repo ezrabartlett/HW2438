@@ -20,13 +20,6 @@ using tinysns::Posting;
 using tinysns::NewPosting;
 using tinysns::TinySNS;
 
-#include <grpc/grpc.h>
-#include <grpcpp/channel.h>
-#include <grpcpp/client_context.h>
-#include <grpcpp/create_channel.h>
-#include <grpcpp/security/credentials.h>
-
-
 class Client : public IClient
 {
     public:
