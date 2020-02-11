@@ -103,6 +103,16 @@ IReply Client::processCommand(std::string& input)
 	// - JOIN/LEAVE and "<username>" are separated by one space.
 	// ------------------------------------------------------------
 	
+    if(strncmp(input, "FOLLOW", 6)==0){
+        cout << "follow command";
+    } else if(strncmp(input, "UNFOLLOW", 8)==0){
+        cout << "unfollow command";
+    } else if(strncmp(input, "LIST", 4)==4){
+        cout << "list command";
+    } else if(strncmp(input, "TIMELINE", 8)==0){
+        cout << "timeline command";
+    }
+
     // ------------------------------------------------------------
 	// GUIDE 2:
 	// Then, you should create a variable of IReply structure
