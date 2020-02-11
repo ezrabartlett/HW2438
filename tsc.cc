@@ -87,7 +87,7 @@ int Client::connectTo()
     ClientContext client_context;
 
     User current_user; 
-    current_user.username = username;
+    current_user.username(username);
 
     return 1; // return 1 if success, otherwise return -1
 }
