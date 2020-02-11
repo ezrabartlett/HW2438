@@ -89,8 +89,8 @@ int Client::connectTo()
     User current_user; 
     current_user.set_username(username);
     
-    ReplyStatus login_statustat;
-    Status stat = stub_->Login(&context, current_user, &login_status);
+    ReplyStatus login_status;
+    Status stat = stub_->Login(&client_context, current_user, &login_status);
 
     std::cout << ReplyStatus.status;
     return 1; // return 1 if success, otherwise return -1
