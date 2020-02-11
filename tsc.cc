@@ -39,7 +39,7 @@ class Client : public IClient
         
         // You can have an instance of the client stub
         // as a member variable.
-        std::unique_ptr<TinySNS::Stub> stub_;
+        std::unique_ptr<tinysns::Stub> stub_;
 };
 
 int main(int argc, char** argv) {
