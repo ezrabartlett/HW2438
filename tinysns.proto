@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "io.grpc.TinySNS";
+option java_outer_classname = "TinySNSProto";
+option objc_class_prefix = "TS";
+
+package TinySNS;
+
+
+service TinySNS {
+      rpc SignIn(User) returns (ReplyStatus) {}
+      rpc GetList(User) returns (stream User) {}
+      rpc Follow(User) returns (ReplyStatus) {}
+      rpc Unfollow(User) returns (ReplyStatus) {}
+      rpc GetTimeline(User) returns (stream Posting) {}
+      rpc PostTimeline(NewPosting) returns (ReplyStatus) {}
+}
+
+message User {
+      string name = 1;
+}
+
+message ReplyStatus {
+      string status = 1;
+}
+
+message Posting {
+      string name = 1;
+      string content = 2;
+      int64 time = 3;
+}
+
+message NewPosting {
+      string name = 1;
+      string content = 2;
+}
