@@ -7,6 +7,7 @@
 #include <grpc++/grpc++.h>
 #include "client.h"
 #include "tinysns.grpc.pb.h"
+#include <grpcpp/channel.h>
 
 using grpc::Channel;
 using grpc::ClientContext;
