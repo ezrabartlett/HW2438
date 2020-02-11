@@ -19,7 +19,7 @@ using TinySNS::ReplyStatus;
 using TinySNS::Posting;
 using TinySNS::NewPosting;
 using TinySNS::TinySNS;
-using TinySNS::createstub;
+using TinySNS::NewStub;
 
 
 class Client : public IClient
