@@ -103,13 +103,15 @@ IReply Client::processCommand(std::string& input)
 	// - JOIN/LEAVE and "<username>" are separated by one space.
 	// ------------------------------------------------------------
 	
-    if(strncmp((char*)input, "FOLLOW", 6)==0){
+    const char* input_copy = input.c_str();
+
+    if(strncmp(input_copy, "FOLLOW", 6)==0){
         cout << "follow command";
-    } else if((char*)strncmp(input, "UNFOLLOW", 8)==0){
+    } else if(strncmp(input_copy, "UNFOLLOW", 8)==0){
         cout << (char*)"unfollow command";
-    } else if(strncmp((char*)input, "LIST", 4)==4){
+    } else if(strncmp(input_copy, "LIST", 4)==4){
         cout << "list command";
-    } else if(strncmp((char*)input, "TIMELINE", 8)==0){
+    } else if(strncmp(input_copy, "TIMELINE", 8)==0){
         cout << "timeline command";
     }
 
