@@ -90,7 +90,7 @@ int Client::connectTo()
     current_user.set_username(username);
     
     ReplyStatus login_status;
-    Stub_->Login(&client_context, current_user, &login_status);
+    stub_->Login(&client_context, current_user, &login_status);
 
     //std::cout << login_status.status();
     return 1; // return 1 if success, otherwise return -1
