@@ -25,7 +25,7 @@ class Client : public IClient
     public:
         Client(const std::string& hname,
                const std::string& uname,
-               const std::string& p
+               const std::string& p)
             :hostname(hname), username(uname), port(p)
             {}
     protected:
