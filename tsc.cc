@@ -106,13 +106,13 @@ IReply Client::processCommand(std::string& input)
     const char* input_copy = input.c_str();
 
     if(strncmp(input_copy, "FOLLOW", 6)==0){
-        cout << "follow command";
+        std::cout << "follow command";
     } else if(strncmp(input_copy, "UNFOLLOW", 8)==0){
-        cout << (char*)"unfollow command";
+        std::cout << (char*)"unfollow command";
     } else if(strncmp(input_copy, "LIST", 4)==4){
-        cout << "list command";
+        std::cout << "list command";
     } else if(strncmp(input_copy, "TIMELINE", 8)==0){
-        cout << "timeline command";
+        std::cout << "timeline command";
     }
 
     // ------------------------------------------------------------
