@@ -15,6 +15,7 @@ using grpc::ClientReaderWriter;
 using grpc::ClientWriter;
 using grpc::Status;
 using tinysns::User;
+using grpc::CreateChannel;
 using tinysns::ReplyStatus;
 using tinysns::Posting;
 using tinysns::NewPosting;
