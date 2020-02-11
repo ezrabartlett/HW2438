@@ -14,11 +14,11 @@ using grpc::ClientReader;
 using grpc::ClientReaderWriter;
 using grpc::ClientWriter;
 using grpc::Status;
-using TinySNS::User;
-using TinySNS::ReplyStatus;
-using TinySNS::Posting;
-using TinySNS::NewPosting;
-using TinySNS::TinySNS;
+using tinysns::User;
+using tinysns::ReplyStatus;
+using tinysns::Posting;
+using tinysns::NewPosting;
+using tinysns::TinySNS;
 
 class Client : public IClient
 {
