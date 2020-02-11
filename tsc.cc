@@ -40,7 +40,8 @@ class Client : public IClient
         
         // You can have an instance of the client stub
         // as a member variable.
-        //std::unique_ptr<NameOfYourStubClass::Stub> stub_;
+    
+        std::unique_ptr<TinySNS::Stub> stub_;
 };
 
 int main(int argc, char** argv) {
@@ -81,6 +82,7 @@ int Client::connectTo()
     // Please refer to gRpc tutorial how to create a stub.
 	// ------------------------------------------------------------
 
+    grpc::CreateChannel(hostname + ":" port, grpc::InsecureChannelCredentials());
     return 1; // return 1 if success, otherwise return -1
 }
 
