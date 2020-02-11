@@ -7,7 +7,6 @@
 #include <grpc++/grpc++.h>
 #include "client.h"
 #include "tinysns.grpc.pb.h"
-#include <grpc++/channel.h>
 
 using grpc::Channel;
 using grpc::ClientContext;
@@ -16,11 +15,11 @@ using grpc::ClientReaderWriter;
 using grpc::ClientWriter;
 using grpc::Status;
 using tinysns::User;
-using grpc::CreateChannel;
 using tinysns::ReplyStatus;
 using tinysns::Posting;
 using tinysns::NewPosting;
 using tinysns::TinySNS;
+
 
 class Client : public IClient
 {
@@ -41,7 +40,7 @@ class Client : public IClient
         
         // You can have an instance of the client stub
         // as a member variable.
-        std::unique_ptr<TinySNS::Stub> stub_;
+        //std::unique_ptr<NameOfYourStubClass::Stub> stub_;
 };
 
 int main(int argc, char** argv) {
@@ -55,7 +54,6 @@ int main(int argc, char** argv) {
             case 'h':
                 hostname = optarg;break;
             case 'u':
-
                 username = optarg;break;
             case 'p':
                 port = optarg;break;
@@ -83,9 +81,6 @@ int Client::connectTo()
     // Please refer to gRpc tutorial how to create a stub.
 	// ------------------------------------------------------------
 
-    std::shared_ptr<Channel> channel = CreateChannel(hostname + ":" + port, grpc::InsecureChannelCredentials());
-    //stub_ = TinySNS::NewStub(channel);
-    
     return 1; // return 1 if success, otherwise return -1
 }
 

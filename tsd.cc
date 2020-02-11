@@ -289,6 +289,8 @@ int main(int argc, char** argv) {
     builder.AddListeningPort("0.0.0.0:" + port, grpc::InsecureServerCredentials());
     builder.RegisterService(&tinySNS);
     std::unique_ptr<Server> server(builder.BuildAndStart());
+    std::cout << "Server listening on " << "0.0.0.0:3000" << std::endl;
+    
     server->Wait();
     return 0;
 }
