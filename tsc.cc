@@ -82,7 +82,13 @@ int Client::connectTo()
     // Please refer to gRpc tutorial how to create a stub.
 	// ------------------------------------------------------------
 
-    //TinySNS::NewStub(grpc::CreateChannel(hostname + ":" + port, grpc::InsecureChannelCredentials()));
+    TinySNS::NewStub(grpc::CreateChannel(hostname + ":" + port, grpc::InsecureChannelCredentials()));
+
+    ClientContext client_context;
+
+    User current_user; 
+    current_user.set_name(username);
+
     return 1; // return 1 if success, otherwise return -1
 }
 
