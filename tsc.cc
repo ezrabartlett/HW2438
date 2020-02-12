@@ -92,31 +92,10 @@ int Client::connectTo()
     ReplyStatus login_status;
     Status status = stub_->Login(&client_context, current_user, &login_status);
 
-    //std::cout << login_status.status();
+    std::cout << login_status.status();
     return 1; // return 1 if success, otherwise return -1
 }
-/*int Client::connectTo()
-{
-	// ------------------------------------------------------------
-    // In this function, you are supposed to create a stub so that
-    // you call service methods in the processCommand/porcessTimeline
-    // functions. That is, the stub should be accessible when you want
-    // to call any service methods in those functions.
-    // I recommend you to have the stub as
-    // a member variable in your own Client class.
-    // Please refer to gRpc tutorial how to create a stub.
-	// ------------------------------------------------------------
 
-    std::shared_ptr<Channel> channel = grpc::CreateChannel(hostname + ":" + port, grpc::InsecureChannelCredentials());
-    stub_ = TinySNS::NewStub(channel);
-    ClientContext user_context;
-    User curUser; curUser.set_username(username);
-    ReplyStatus rStat;
-    Status stat = stub_->Login(&user_context, curUser, &rStat);
-    std::cout << rStat.status();
-
-    return 1; // return 1 if success, otherwise return -1
-}*/
 IReply Client::processCommand(std::string& input)
 {
 	// ------------------------------------------------------------
