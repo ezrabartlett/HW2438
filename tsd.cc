@@ -230,7 +230,7 @@ public:
                 network[followIndex].followers.erase(network[followIndex].followers.begin()+i);
             }
         }
-
+        SaveNetwork();
         reply->set_status("0");
         return Status::OK;
     }
