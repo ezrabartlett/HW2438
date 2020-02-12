@@ -119,7 +119,7 @@ IReply Client::processCommand(std::string& input)
 	// ------------------------------------------------------------
 	
     const char* input_copy = input.c_str();
-    std::string string_input = input.copy();
+    //std::string string_input = input.copy();
     
     User current_user;
     current_user.set_username(username);
@@ -127,7 +127,7 @@ IReply Client::processCommand(std::string& input)
     User target_user;
     
     if(strncmp(input_copy, "FOLLOW", 6)==0){
-        input_copy = string_input.erase(0,8);
+        input_copy = input.erase(0,8).c_str();
         std::cout << "follow command" << input_copy;
     } else if(strncmp(input_copy, "UNFOLLOW", 8)==0){
         std::cout << (char*)"unfollow command";
