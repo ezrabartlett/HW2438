@@ -161,17 +161,17 @@ IReply Client::processCommand(std::string& input)
     if(status.status() == "0")
         command_reply.comm_status = SUCCESS;
     else if(status.status() == "1")
-        command_reply.comm_status FAILURE_ALREADY_EXISTS;
+        command_reply.comm_status = FAILURE_ALREADY_EXISTS;
     else if(status.status() == "2")
-        command_reply.comm_status FAILURE_NOT_EXISTS;
+        command_reply.comm_status = FAILURE_NOT_EXISTS;
     else if(status.status() == "3")
-        command_reply.comm_status FAILURE_INVALID_USERNAME;
+        command_reply.comm_status = FAILURE_INVALID_USERNAME;
     else if(status.status() == "4")
-        command_reply.comm_status FAILURE_INVALID;
+        command_reply.comm_status = FAILURE_INVALID;
     else if(status.status == "5")
-        command_reply.comm_status FAILURE_UNKNOWN;
+        command_reply.comm_status = FAILURE_UNKNOWN;
     else
-        command_reply.comm_status SUCCESS;
+        command_reply.comm_status = SUCCESS;
     
     // ------------------------------------------------------------
 	// GUIDE 2:
