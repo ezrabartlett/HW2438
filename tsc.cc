@@ -121,6 +121,8 @@ IReply Client::processCommand(std::string& input)
     const char* input_copy = input.c_str();
     //std::string string_input = input.copy();
     
+    IReply command_reply;
+    ClientContext command_context;
     User current_user;
     current_user.set_username(username);
     
@@ -131,11 +133,15 @@ IReply Client::processCommand(std::string& input)
         target_user.set_username(target_name);
         
         std::cout << "follow command" << input_copy;
+        
+        command_reply.grpc_status = stub_->follow(&context, users, &rStatus);
     } else if(strncmp(input_copy, "UNFOLLOW", 8)==0){
         const char* target_name = input.substr(9).c_str();
         target_user.set_username(target_name);
         
         std::cout << (char*)"unfollow command";
+        
+        command_reply.grpc_status = stub_->follow(&context, users, &rStatus);
     } else if(strncmp(input_copy, "LIST", 4)==0){
         std::cout << "list command";
     } else if(strncmp(input_copy, "TIMELINE", 8)==0){
