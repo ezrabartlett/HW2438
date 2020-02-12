@@ -266,18 +266,18 @@ void Client::processTimeline()
            timeline_post.set_username(username);
            //timeline_post.set_posting_time()
            
-           Status postStatus = stub_->PostTimeline(&client_context, post, &input_status);
+           Status postStatus = stub_->PostTimeline(&client_context, timeline_post, &input_status);
            
-           if(postStatus.status() != "0")
-               cout << "FAILED TO POST"
+           if(postStatus.status != "0")
+               std::cout << "FAILED TO POST"
        } else {
-           current_user user;
-           current_user.set_name(username);
+           User current_user;
+           current_user.set_username(username);
            tinysns::Posting post;
            IStatus status;
            
            std::vector<Posting> timeline_posts;
-           std::unique_ptr<ClientReader<Posting>> reader(stub_->GetTimeline(&context, user));
+           std::unique_ptr<ClientReader<Posting>> reader(stub_->GetTimeline(&client_context, current_user));
            
            bool newPost = true;
            while(reader->Read(&post)) {
