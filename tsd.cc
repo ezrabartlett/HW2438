@@ -119,12 +119,13 @@ private:
     }
 
 public:
+    
     Status Login(ServerContext* context, const User* user, ReplyStatus* reply)  {
         if(!network_loaded){
-            //LoadNetwork();
+            LoadNetwork();
             network_loaded = true;
         }
-
+        Profile profile;
         if(userExists(user->username()))
         {
             reply->set_status("1");
@@ -133,13 +134,12 @@ public:
         else{
             User new_user;
             new_user.set_username(user->username());
-            Profile profile;
             profile.usr = new_user;
             profile.username = user->username();
             profile.followers.push_back(user->username());
             network.push_back(profile);
             reply->set_status("0");
-            //SaveNetwork();
+            SaveNetwork();
         }
         return Status::OK;
 
@@ -286,10 +286,10 @@ int main(int argc, char** argv) {
     TinySNSImpl tinySNS;
 
     ServerBuilder builder;
-    builder.AddListeningPort("localhost:" + port, grpc::InsecureServerCredentials());
+    builder.AddListeningPort("0.0.0.0:" + port, grpc::InsecureServerCredentials());
     builder.RegisterService(&tinySNS);
     std::unique_ptr<Server> server(builder.BuildAndStart());
-    std::cout << "Server listening on " << "localhost:" + port << std::endl;
+    std::cout << "Server listening on " << "0.0.0.0:3000" << std::endl;
     
     server->Wait();
     return 0;
