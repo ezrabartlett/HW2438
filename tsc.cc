@@ -92,10 +92,10 @@ int Client::connectTo()
     ReplyStatus login_status;
     Status status = stub_->Login(&client_context, current_user, &login_status);
     
-    if(login_status.status()=="0"){
+    if(login_status.status()=="1"){
         std::cout << username <<": successfully logged in" << std::endl;
         return 1;
-    } else if(login_status.status()=="1"){
+    } else if(login_status.status()=="0"){
         std::cout << "new user created" << std::endl;
         return 1;
     }else {
