@@ -93,10 +93,10 @@ int Client::connectTo()
     Status status = stub_->Login(&client_context, current_user, &login_status);
     
     if(login_status.status()=="0"){
-        std::cout << "successfully connected to host" << endl;
+        std::cout << "successfully connected to host" << std::endl;
         return 1;
     } else {
-        std::cout << "could not establish a connection to host" << endl;
+        std::cout << "could not establish a connection to host" << std::endl;
         return -1;
     }
 }
