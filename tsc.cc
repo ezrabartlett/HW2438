@@ -70,7 +70,7 @@ int main(int argc, char** argv) {
     return 0;
 }
 
-/*int Client::connectTo()
+int Client::connectTo()
 {
 	// ------------------------------------------------------------
     // In this function, you are supposed to create a stub so that
@@ -82,7 +82,7 @@ int main(int argc, char** argv) {
     // Please refer to gRpc tutorial how to create a stub.
 	// ------------------------------------------------------------
 
-    TinySNS::NewStub(grpc::CreateChannel(hostname + ":" + port, grpc::InsecureChannelCredentials()));
+    stub_ = TinySNS::NewStub(grpc::CreateChannel(hostname + ":" + port, grpc::InsecureChannelCredentials()));
 
     ClientContext client_context;
 
@@ -94,8 +94,8 @@ int main(int argc, char** argv) {
 
     //std::cout << login_status.status();
     return 1; // return 1 if success, otherwise return -1
-}*/
-int Client::connectTo()
+}
+/*int Client::connectTo()
 {
 	// ------------------------------------------------------------
     // In this function, you are supposed to create a stub so that
@@ -116,7 +116,7 @@ int Client::connectTo()
     std::cout << rStat.status();
 
     return 1; // return 1 if success, otherwise return -1
-}
+}*/
 IReply Client::processCommand(std::string& input)
 {
 	// ------------------------------------------------------------
