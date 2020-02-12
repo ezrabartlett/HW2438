@@ -222,11 +222,11 @@ bool checkForInput() {
     fds[0] = STDIN_FILENO;
     int maxFd = 1 + STDIN_FILENO;
     
-    FD_SET(fds[0], &r_fd);
+    FD_SET(fds[0], &rfd);
 
-    ready = select(maxFd, &r_fd, NULL, NULL, &timeout);
+    ready = select(maxFd, &rfd, NULL, NULL, &timeout);
     
-    else if(ready == 0) {
+    if(ready == 0) {
         return 0;
     }
     return 1;
@@ -256,7 +256,7 @@ void Client::processTimeline()
 
         User current_user;
 
-        current_user.set_username();
+        current_user.set_username(username);
 
         if(checkForInput()) {
            ReplyStatus input_status;
@@ -264,11 +264,11 @@ void Client::processTimeline()
            NewPosting timeline_post;
            timeline_post.set_posting(getPostMessage());
            timeline_post.set_username(username);
-           timeline_post.set_posting_time()
+           //timeline_post.set_posting_time()
            
            Status postStatus = stub_->PostTimeline(&client_context, post, &input_status);
            
-           if(postStatus.status != "0")
+           if(postStatus.status() != "0")
                cout << "FAILED TO POST"
        } else {
            current_user user;
