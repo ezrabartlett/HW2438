@@ -134,14 +134,16 @@ IReply Client::processCommand(std::string& input)
         to_follow.set_username(username);
         to_follow.set_follow(target_name);
         
-        target_user.set_username(target_name);
-        
         std::cout << "follow command" << input_copy;
         
         command_reply.grpc_status = stub_->Follow(&command_context, to_follow, &status);
     } else if(strncmp(input_copy, "UNFOLLOW", 8)==0){
         const char* target_name = input.substr(9).c_str();
-        target_user.set_username(target_name);
+        
+        tinysns::FollowOp to_unfollow;
+             
+        to_unfollow.set_username(username);
+        to_unfollow.set_follow(target_name);
         
         std::cout << (char*)"unfollow command";
         
