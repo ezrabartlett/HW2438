@@ -268,7 +268,7 @@ void Client::processTimeline()
            
            Status postStatus = stub_->PostTimeline(&client_context, timeline_post, &input_status);
            
-           if(postStatus.status() != "0")
+           if(ReplyStatus.status() != "0")
                std::cout << "FAILED TO POST";
        } else {
            User current_user;
@@ -282,7 +282,7 @@ void Client::processTimeline()
            bool newPost = true;
            while(reader->Read(&post)) {
                if(newPost) {
-                   timeline_posts.insert(timeline_posts.begin(), timeline_post);
+                   timeline_posts.insert(timeline_posts.begin(), post);
                }
                else {
                    newPost = false;
@@ -290,9 +290,9 @@ void Client::processTimeline()
            }
            Status s = reader->Finish();
            for(int j = 0; j < timeline_posts.size(); j++) {
-               time_t tempTime = posts.at(j).time();
-               displayPostMessage(posts.at(j).name(), posts.at(j).posttext(), tempTime);
-               lastPost = posts.at(j).time();
+               time_t tempTime = timeline_posts.at(j).time();
+               displayPostMessage(timeline_posts.at(j).name(), posts.at(j).posttext(), tempTime);
+               //lastPost = posts.at(j).time();
            }
        }
     }
