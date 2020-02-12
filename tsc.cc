@@ -189,8 +189,7 @@ IReply Client::processCommand(std::string& input)
     // "following_users" member variable of IReply.
 	// ------------------------------------------------------------
     
-    IReply ire;
-    return ire;
+    return command_reply;
 }
 
 void Client::processTimeline()
