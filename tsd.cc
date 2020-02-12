@@ -121,7 +121,7 @@ private:
 public:
     Status Login(ServerContext* context, const User* user, ReplyStatus* reply)  {
         if(!network_loaded){
-            LoadNetwork();
+            //LoadNetwork();
             network_loaded = true;
         }
 
@@ -139,7 +139,7 @@ public:
             profile.followers.push_back(user->username());
             network.push_back(profile);
             reply->set_status("0");
-            SaveNetwork();
+            //SaveNetwork();
         }
         return Status::OK;
 
