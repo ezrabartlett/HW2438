@@ -91,9 +91,14 @@ int Client::connectTo()
     
     ReplyStatus login_status;
     Status status = stub_->Login(&client_context, current_user, &login_status);
-
-    std::cout << login_status.status();
-    return 1; // return 1 if success, otherwise return -1
+    
+    if(login_status.status()==0){
+        std::cout << "successfully connected to host" << endl;
+        return 1;
+    } else {
+        std::cout << "could not establish a connection to host" << endl;
+        return -1;
+    }
 }
 
 IReply Client::processCommand(std::string& input)
@@ -115,8 +120,14 @@ IReply Client::processCommand(std::string& input)
 	
     const char* input_copy = input.c_str();
 
+    User current_user;
+    current_user.set_username(username);
+    
+    User target_user;
+    
     if(strncmp(input_copy, "FOLLOW", 6)==0){
-        std::cout << "follow command";
+        input_copy = input_copy.substr(8);
+        std::cout << "follow command" << input_copy;
     } else if(strncmp(input_copy, "UNFOLLOW", 8)==0){
         std::cout << (char*)"unfollow command";
     } else if(strncmp(input_copy, "LIST", 4)==0){
