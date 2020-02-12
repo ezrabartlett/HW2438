@@ -211,7 +211,7 @@ IReply Client::processCommand(std::string& input)
 }
 
 bool checkForInput() {
-    struct timeval timeout = 300000;
+    struct timeval timeout = (unsigned long)300000;
     timeout.tv_usec = timeout;
 
     int ready;
