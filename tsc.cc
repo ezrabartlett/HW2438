@@ -138,7 +138,7 @@ IReply Client::processCommand(std::string& input)
         
         command_reply.grpc_status = stub_->Follow(&command_context, to_follow, &status);
         
-        std::cout << command_reply.grpc_status;
+        //std::cout << command_reply.grpc_status;
     } else if(strncmp(input_copy, "UNFOLLOW", 8)==0){
         const char* target_name = input.substr(9).c_str();
         
@@ -151,13 +151,28 @@ IReply Client::processCommand(std::string& input)
         
         command_reply.grpc_status = stub_->Unfollow(&command_context, to_unfollow, &status);
         
-       std::cout << command_reply.grpc_status;
+       //std::cout << command_reply.grpc_status;
     } else if(strncmp(input_copy, "LIST", 4)==0){
         std::cout << "list command";
     } else if(strncmp(input_copy, "TIMELINE", 8)==0){
         std::cout << "timeline command";
     }
 
+    if(status.status() == "0")
+        command_reply.comm_status = SUCCESS;
+    else if(status.status() == "1")
+        command_reply.comm_status FAILURE_ALREADY_EXISTS;
+    else if(status.status() == "2")
+        command_reply.comm_status FAILURE_NOT_EXISTS;
+    else if(status.status() == "3")
+        command_reply.comm_status FAILURE_INVALID_USERNAME;
+    else if(status.status() == "4")
+        command_reply.comm_status FAILURE_INVALID;
+    else if(status.status == "5")
+        command_reply.comm_status FAILURE_UNKNOWN;
+    else
+        command_reply.comm_status SUCCESS;
+    
     // ------------------------------------------------------------
 	// GUIDE 2:
 	// Then, you should create a variable of IReply structure
