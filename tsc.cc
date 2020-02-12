@@ -92,7 +92,7 @@ int Client::connectTo()
     ReplyStatus login_status;
     Status status = stub_->Login(&client_context, current_user, &login_status);
     
-    if(login_status.status()==0){
+    if(login_status.status()=="0"){
         std::cout << "successfully connected to host" << endl;
         return 1;
     } else {
