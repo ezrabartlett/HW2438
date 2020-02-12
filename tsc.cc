@@ -290,8 +290,8 @@ void Client::processTimeline()
            }
            Status s = reader->Finish();
            for(int j = 0; j < timeline_posts.size(); j++) {
-               time_t tempTime = timeline_posts.at(j).time();
-               displayPostMessage(timeline_posts.at(j).name(), posts.at(j).posttext(), tempTime);
+               time_t tempTime = timeline_posts.at(j).posting_time();
+               displayPostMessage(timeline_posts.at(j).name(), timeline_posts.at(j).post(), tempTime);
                //lastPost = posts.at(j).time();
            }
        }
