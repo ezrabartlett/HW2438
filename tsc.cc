@@ -279,8 +279,8 @@ void Client::processTimeline()
                 timeline_posts.insert(timeline_posts.begin(), post);
            }
            for(int c = 0; c < timeline_posts.size(); c++) {
-               time_t tempTime = timeline_posts.at(j).posting_time();
-               displayPostMessage(timeline_posts.at(j).username(), timeline_posts.at(j).posting(), tempTime);
+               time_t tempTime = timeline_posts.at(c).posting_time();
+               displayPostMessage(timeline_posts.at(c).username(), timeline_posts.at(c).posting(), tempTime);
            }
        }
     }
