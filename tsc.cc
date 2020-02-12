@@ -113,16 +113,7 @@ int Client::connectTo()
     User curUser; curUser.set_username(username);
     ReplyStatus rStat;
     Status stat = stub_->Login(&context, curUser, &rStat);
-    if(rStat.status() == "1") {
-        //User exists, consider writing that they have signed in
-    }
-    else if(rStat.status() == "2") {
-        //User is new, consider writing a welcom message
-    }
-    else {
-        //Something has gone wrong, exit
-        exit(1);
-    }
+    std::cout << rStat.status();
 
     return 1; // return 1 if success, otherwise return -1
 }
