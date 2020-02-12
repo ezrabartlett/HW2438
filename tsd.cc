@@ -272,11 +272,16 @@ public:
 
 int main(int argc, char** argv) {
     std::string port;
+    std::string host;
+    host = "0.0.0.0:";
     int opt = 0;
-    while((opt = getopt(argc, argv, "p:")) != -1){
+    while((opt = getopt(argc, argv, "p:h:")) != -1){
         switch(opt) {    
             case 'p':
                 port = optarg;
+                break;
+            case 'h':
+                host = optarg;
                 break;
             default:
                 std::cerr << "Invalid Command Line Argument\n";
@@ -286,10 +291,10 @@ int main(int argc, char** argv) {
     TinySNSImpl tinySNS;
 
     ServerBuilder builder;
-    builder.AddListeningPort("0.0.0.0:" + port, grpc::InsecureServerCredentials());
+    builder.AddListeningPort(host + ":" + port, grpc::InsecureServerCredentials());
     builder.RegisterService(&tinySNS);
     std::unique_ptr<Server> server(builder.BuildAndStart());
-    std::cout << "Server listening on " << "0.0.0.0:3000" << std::endl;
+    std::cout << "Server listening on " << host + ":" + port << std::endl;
     
     server->Wait();
     return 0;
