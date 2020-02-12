@@ -225,4 +225,56 @@ void Client::processTimeline()
     // and you can terminate the client program by pressing
     // CTRL-C (SIGINT)
 	// ------------------------------------------------------------
+    
+    while(true) {
+           ClientContext client_context;
+        
+           if(userInputReady(100000)) {
+               NewPost post;
+               ReplyStatus rStatus;
+               post.set_postfrom(username);
+               post.set_posttext(getPostMessage());
+               Status stat = stub_->PostTimeline(&context, post, &rStatus);
+               if(checkForError(rStatus.stat()) != SUCCESS) {
+                   std::cout << "Debug:tsc:processTimeline:Error from server" << std::endl;
+               }
+           }
+           else {
+               User user;
+               Post post;
+               enum IStatus stat;
+               std::vector<Post> posts;
+               user.set_name(username);
+               std::unique_ptr<ClientReader<Post> > reader(stub_->GetTimeline(&context, user));
+               //Set a default value for comm_status, since this error should never happen for this command
+               bool checkedFistMsg = false;
+               //Set default val to success, so a user without anything in their timeline (and would thus skip the loop)
+               //can still get to the timeline functionality
+               stat = SUCCESS;
+               bool newPost = true;
+               while(reader->Read(&post)) {
+                   //If the default value is still set, check the first passed name for errors
+                   if(!checkedFistMsg) {
+                       stat = checkForError(post.name());
+                       checkedFistMsg = true;
+                   }
+                   //If all is good, add the posts to the vector for reversing
+                   if(newPost && stat == SUCCESS && post.time() > lastPost) {
+                       posts.insert(posts.begin(), post);
+                   }
+                   else {
+                       newPost = false;
+                   }
+               }
+               Status s = reader->Finish();
+               for(int j = 0; j < posts.size(); j++) {
+                   time_t tempTime = posts.at(j).time();
+                   displayPostMessage(posts.at(j).name(), posts.at(j).posttext(), tempTime);
+                   lastPost = posts.at(j).time();
+               }
+               if(!s.ok()) {
+                   std::cout << "Error in getting update timeline" << std::endl;
+               }
+           }
+       }
 }

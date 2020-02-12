@@ -189,7 +189,7 @@ public:
             return Status::OK;
         }
         //check not already following
-        if(existsInVector(toFollow, network[usrIndex].following)){
+        if(!existsInVector(toFollow, network[usrIndex].following)){
             network[usrIndex].following.push_back(toFollow);
             network[followIndex].followers.push_back(username);
             SaveNetwork();
