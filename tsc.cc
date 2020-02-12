@@ -127,15 +127,17 @@ IReply Client::processCommand(std::string& input)
     User current_user;
     current_user.set_username(username);
     
-    User target_user;
-    
     if(strncmp(input_copy, "FOLLOW", 6)==0){
         const char* target_name = input.substr(7).c_str();
+        FollowOp to_follow;
+        to_follow.set_username(username);
+        to_follow.set_follow(target_name);
+        
         target_user.set_username(target_name);
         
         std::cout << "follow command" << input_copy;
         
-        command_reply.grpc_status = stub_->Follow(&command_context, target_user, &status);
+        command_reply.grpc_status = stub_->Follow(&command_context, to_follow, &status);
     } else if(strncmp(input_copy, "UNFOLLOW", 8)==0){
         const char* target_name = input.substr(9).c_str();
         target_user.set_username(target_name);
