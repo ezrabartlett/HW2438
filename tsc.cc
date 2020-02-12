@@ -113,10 +113,10 @@ int Client::connectTo()
     User curUser; curUser.set_username(username);
     ReplyStatus rStat;
     Status stat = stub_->Login(&context, curUser, &rStat);
-    if(rStat.stat() == "1") {
+    if(rStat.status() == "1") {
         //User exists, consider writing that they have signed in
     }
-    else if(rStat.stat() == "2") {
+    else if(rStat.status() == "2") {
         //User is new, consider writing a welcom message
     }
     else {
