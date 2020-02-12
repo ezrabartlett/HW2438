@@ -151,11 +151,7 @@ IReply Client::processCommand(std::string& input)
         std::cout << (char*)"unfollow command";
         
         command_reply.grpc_status = stub_->Unfollow(&command_context, to_unfollow, &status);
-    } else if(strncmp(input_copy, "LIST", 4)==0){
-        std::cout << "list command";
-    } else if(strncmp(input_copy, "TIMELINE", 8)==0){
-        std::cout << "timeline command";
-    }
+    } else if(strncmp(input_copy, "LIST", 4)==0){}
 
     // Convert to comm iStatus message before returning
     if(status.status() == "0")
@@ -279,20 +275,12 @@ void Client::processTimeline()
            std::vector<Posting> timeline_posts;
            std::unique_ptr<ClientReader<Posting>> reader(stub_->GetTimeline(&client_context, current_user));
            
-           bool newPost = true;
            while(reader->Read(&post)) {
-               if(newPost) {
-                   timeline_posts.insert(timeline_posts.begin(), post);
-               }
-               else {
-                   newPost = false;
-               }
+                timeline_posts.insert(timeline_posts.begin(), post);
            }
-           Status s = reader->Finish();
-           for(int j = 0; j < timeline_posts.size(); j++) {
+           for(int c = 0; c < timeline_posts.size(); c++) {
                time_t tempTime = timeline_posts.at(j).posting_time();
                displayPostMessage(timeline_posts.at(j).username(), timeline_posts.at(j).posting(), tempTime);
-               //lastPost = posts.at(j).time();
            }
        }
     }
