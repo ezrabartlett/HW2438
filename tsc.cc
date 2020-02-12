@@ -226,7 +226,7 @@ void Client::processTimeline()
     // CTRL-C (SIGINT)
 	// ------------------------------------------------------------
     
-    while(true) {
+    /*while(true) {
            ClientContext client_context;
         
            if(userInputReady(100000)) {
@@ -276,5 +276,5 @@ void Client::processTimeline()
                    std::cout << "Error in getting update timeline" << std::endl;
                }
            }
-       }
+       }*/
 }
