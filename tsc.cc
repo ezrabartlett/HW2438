@@ -82,8 +82,8 @@ int Client::connectTo()
     // Please refer to gRpc tutorial how to create a stub.
 	// ------------------------------------------------------------
 
-    //std::shared_ptr<Channel> channel = grpc::CreateChannel(hostname + ":" + port, grpc::InsecureChannelCredentials());
-    stub_ = TinySNS::NewStub(grpc::CreateChannel(hostname + ":" + port, grpc::InsecureChannelCredentials()););
+    //gstd::shared_ptr<Channel> channel = grpc::CreateChannel(hostname + ":" + port, grpc::InsecureChannelCredentials());
+    stub_ = TinySNS::NewStub(grpc::CreateChannel(hostname + ":" + port, grpc::InsecureChannelCredentials()));
     ClientContext context;
     User curUser; curUser.set_username(username);
     ReplyStatus rStat;
