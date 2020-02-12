@@ -168,7 +168,7 @@ IReply Client::processCommand(std::string& input)
         command_reply.comm_status = FAILURE_INVALID_USERNAME;
     else if(status.status() == "4")
         command_reply.comm_status = FAILURE_INVALID;
-    else if(status.status == "5")
+    else if(status.status() == "5")
         command_reply.comm_status = FAILURE_UNKNOWN;
     else
         command_reply.comm_status = SUCCESS;
