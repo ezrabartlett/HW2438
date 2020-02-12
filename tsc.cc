@@ -127,7 +127,7 @@ IReply Client::processCommand(std::string& input)
     User target_user;
     
     if(strncmp(input_copy, "FOLLOW", 6)==0){
-        input_copy = input.erase(0,8).c_str();
+        input_copy = input.substr(7).c_str();
         std::cout << "follow command" << input_copy;
     } else if(strncmp(input_copy, "UNFOLLOW", 8)==0){
         std::cout << (char*)"unfollow command";
