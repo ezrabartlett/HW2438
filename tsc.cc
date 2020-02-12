@@ -129,7 +129,8 @@ IReply Client::processCommand(std::string& input)
     
     if(strncmp(input_copy, "FOLLOW", 6)==0){
         const char* target_name = input.substr(7).c_str();
-        FollowOp to_follow;
+        tinysns::FollowOp to_follow;
+        
         to_follow.set_username(username);
         to_follow.set_follow(target_name);
         
