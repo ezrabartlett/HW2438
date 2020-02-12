@@ -138,7 +138,7 @@ IReply Client::processCommand(std::string& input)
         
         command_reply.grpc_status = stub_->Follow(&command_context, to_follow, &status);
         
-        std::cout << command_reply.grpc_status();
+        //std::cout << command_reply.grpc_status();
     } else if(strncmp(input_copy, "UNFOLLOW", 8)==0){
         const char* target_name = input.substr(9).c_str();
         
@@ -151,7 +151,7 @@ IReply Client::processCommand(std::string& input)
         
         command_reply.grpc_status = stub_->Unfollow(&command_context, to_unfollow, &status);
         
-        std::cout << command_reply.grpc_status();
+       //std::cout << command_reply.grpc_status();
     } else if(strncmp(input_copy, "LIST", 4)==0){
         std::cout << "list command";
     } else if(strncmp(input_copy, "TIMELINE", 8)==0){
